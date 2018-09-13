@@ -14,6 +14,7 @@ let Helpers = require('../helpers'),
 function getUsers(req, res, next) {
 
     let pageOptions = getPaginationOption(req);
+    // pageOptions.include = [];
     models.User
         .findAndCountAll(pageOptions)
         .then(success(res))
@@ -28,7 +29,10 @@ function postUsers(req, res, next) {
     let user = req.body;
     if (!user) throw 'No user!';
     models.User.create(user)
-        .then(success(res))
+        .then(data => {
+            res.status(201);
+            success(res)(data);
+        })
         .catch(failure(req, next));
 }
 
@@ -41,7 +45,10 @@ function makeFriend(req, res, next) {
     if (!friend.id) notFound('Friend');
 
     models.User.makeFriend(req.params.id, friend.id)
-        .then(success(res))
+        .then(data => {
+            res.status(201);
+            success(res)(data);
+        })
         .catch(failure(req, next));
 }
 
@@ -62,9 +69,10 @@ function userDetails(req, res, next) {
  * get all friends of a user
  */
 function getFriends(req, res, next) {
+    let pageOptions = getPaginationOption(req);
     models.User.findById(req.params.id)
         .then(user => {
-            return user.getFriends();
+            return user.getFriends(pageOptions);
         })
         .then(success(res))
         .catch(failure(req, next));

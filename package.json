@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "syncdb": "node src/commands/syncDb.js"
+    "syncdb": "node src/commands/syncDb.js",
+    "test" : "mocha tests/tests.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -16,6 +17,8 @@
     "sequelize-cli": "^4.1.1"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.2.0",
     "nodemon": "^1.18.4"
   }
 }

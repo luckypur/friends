@@ -4,7 +4,7 @@ var userModel = require('./userModel'),
 
 
 module.exports = (sequelize, DataTypes) => {
-    var User = sequelize.define('User', userModel);
+    let User = sequelize.define('User', userModel);
 
     User.associate = function (models) {
         User.belongsToMany(models.User, {'as': 'Friends', through: 'UserFriend'})

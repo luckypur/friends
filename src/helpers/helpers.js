@@ -61,17 +61,18 @@ function notFoundError(model) {
 }
 
 function getPaginationOption(req) {
-    let count = +req.query.count || config.defaultPageSize,
-        offset = +req.query.offset || 0;
+    let pageSize = +req.query.count || config.defaultPageSize,
+        page = +req.query.page || 0;
+
+    if (pageSize > 1000) pageSize = 100;
+    if (page <= 0) page = 1;
 
     // account for offset and count
-    offset += req.query.page * count || 0;
-    if (count > 1000) count = 100;
-    if (count < 0) count = config.defaultPageSize;
+    offset = (page - 1) * pageSize;
 
     return {
         offset: offset,
-        limit: count
+        limit: pageSize
     }
 
 }

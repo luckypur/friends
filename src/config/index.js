@@ -4,7 +4,7 @@ db = require('./database');
 let config = {
     dev: 'dev',
     port: process.env.PORT || 3000,
-    defaultPageSize: 5
+    defaultPageSize: 2
 };
 
 

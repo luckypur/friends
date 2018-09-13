@@ -8,6 +8,7 @@ module.exports = function configSequelize(dbName, dbHost, userName, password) {
 
     return new Sequelize(dbName, userName, password, {
         host: dbHost,
-        dialect: dialect
+        dialect: dialect,
+        logging: false
     });
 };
