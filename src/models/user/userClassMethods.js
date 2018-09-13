@@ -1,4 +1,4 @@
-var notFoundError = require('../../helpers').notFoundError;
+let notFoundError = require('../../helpers').notFoundError;
 
 /**
  * Add any class methods here

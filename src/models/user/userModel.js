@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-var User = {
+let User = {
     firstName: {
         type: Sequelize.STRING
     },

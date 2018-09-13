@@ -1,9 +1,9 @@
-var express = require('express'),
+let express = require('express'),
     config = require('./config'),
     middleware = require('./middleware'),
     routes = require('./routes');
 
-var app = express();
+let app = express();
 
 middleware.init(app);
 

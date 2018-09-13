@@ -1,4 +1,4 @@
-var userModel = require('./userModel'),
+let userModel = require('./userModel'),
     userClassMethods = require('./userClassMethods'),
     userMethods = require('./userMethods');
 
