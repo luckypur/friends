@@ -1,4 +1,4 @@
-var config = require('./dev');
+let config = require('./dev');
 
 module.exports = {
     'dev': {

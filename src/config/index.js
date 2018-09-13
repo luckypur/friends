@@ -1,7 +1,7 @@
-var _ = require('lodash');
+let _ = require('lodash');
 db = require('./database');
 
-var config = {
+let config = {
     dev: 'dev',
     port: process.env.PORT || 3000,
     defaultPageSize: 5
@@ -11,7 +11,7 @@ var config = {
 process.env.NODE_ENV = process.env.NODE_ENV || config.dev;
 config.env = process.env.NODE_ENV;
 
-var envConfig;
+let envConfig;
 
 envConfig = require('./' + config.env);
 envConfig = envConfig || {};

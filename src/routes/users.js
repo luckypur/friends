@@ -2,22 +2,22 @@
 // DEPENDENCIES
 let Helpers = require('../helpers'),
     models = require('../models'),
-    Success = Helpers.success,
-    Failure = Helpers.failure,
+    success = Helpers.success,
+    failure = Helpers.failure,
     methodNotAllowed = Helpers.methodNotAllowed,
     getPaginationOption = Helpers.getPaginationOption,
-    NotFound = Helpers.notFoundError;
+    notFound = Helpers.notFoundError;
 
 /**
  * Get all users
  */
 function getUsers(req, res, next) {
 
-    let page_options = getPaginationOption(req);
+    let pageOptions = getPaginationOption(req);
     models.User
-        .findAndCountAll(page_options)
-        .then(Success(res))
-        .catch(Failure(req, next));
+        .findAndCountAll(pageOptions)
+        .then(success(res))
+        .catch(failure(req, next));
 }
 
 
@@ -26,12 +26,10 @@ function getUsers(req, res, next) {
  */
 function postUsers(req, res, next) {
     let user = req.body;
-    if (!user) {
-        throw 'No user!';
-    }
+    if (!user) throw 'No user!';
     models.User.create(user)
-        .then(Success(res))
-        .catch(Failure(req, next));
+        .then(success(res))
+        .catch(failure(req, next));
 }
 
 
@@ -40,13 +38,11 @@ function postUsers(req, res, next) {
  */
 function makeFriend(req, res, next) {
     let friend = req.body;
-    if (!friend.id) {
-        NotFound('Friend');
-    }
+    if (!friend.id) notFound('Friend');
 
     models.User.makeFriend(req.params.id, friend.id)
-        .then(Success(res))
-        .catch(Failure(req, next));
+        .then(success(res))
+        .catch(failure(req, next));
 }
 
 /**
@@ -56,10 +52,10 @@ function userDetails(req, res, next) {
     models.User.findById(req.params.id)
         .then(user => {
             if (!user)
-                NotFound('User');
-            Success(res)(user);
+                notFound('User');
+            success(res)(user);
         })
-        .catch(Failure(req, next, 404));
+        .catch(failure(req, next, 404));
 }
 
 /**
@@ -70,8 +66,8 @@ function getFriends(req, res, next) {
         .then(user => {
             return user.getFriends();
         })
-        .then(Success(res))
-        .catch(Failure(req, next));
+        .then(success(res))
+        .catch(failure(req, next));
 }
 
 
@@ -82,10 +78,10 @@ function getFriendsOfFriends(req, res, next) {
     models.User.findById(req.params.id)
         .then(user => {
             user.friendsOfFriends()
-                .then(Success(res))
-                .catch(Failure(req, next));
+                .then(success(res))
+                .catch(failure(req, next));
         })
-        .catch(Failure(req, next));
+        .catch(failure(req, next));
 }
 
 /**

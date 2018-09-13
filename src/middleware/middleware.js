@@ -1,4 +1,4 @@
-var logger = require('morgan'),
+let logger = require('morgan'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser');
 

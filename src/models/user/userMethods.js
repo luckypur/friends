@@ -15,18 +15,6 @@ function friendsOfFriends() {
     })
 }
 
-
-function makeFriend(friend_id) {
-    var user = this;
-    models.User.findById(friend.id)
-        .then(friend => {
-            user.addFriend(friend);
-            friend.addFriend(user);
-        });
-    return user.addFriend(friend.id);
-
-}
-
 function addMethods(schema) {
     schema.prototype.friendsOfFriends = friendsOfFriends;
 }

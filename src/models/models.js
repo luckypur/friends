@@ -6,7 +6,15 @@ let Sequelize = require('sequelize');
 let db = {};
 let envConfig = require('../config');
 
-var sequelize = require('../config/database')(envConfig.dbName, envConfig.dbHost, envConfig.dbUser, envConfig.dbPassword);
+/**
+ * one of the problem with sequelize
+ * can not think of any other way to access the db instance
+ * app wise
+ * @type {Sequelize}
+ */
+
+
+let sequelize = require('../config/database')(envConfig.dbName, envConfig.dbHost, envConfig.dbUser, envConfig.dbPassword);
 
 fs
     .readdirSync(__dirname)
@@ -27,9 +35,8 @@ fs
     });
 
 Object.keys(db).forEach(modelName => {
-    if (db[modelName].associate) {
+    if (db[modelName].associate)
         db[modelName].associate(db);
-    }
 });
 
 db.sequelize = sequelize;

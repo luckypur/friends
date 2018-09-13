@@ -1,6 +1,6 @@
-var Sequelize = require('sequelize');
+let Sequelize = require('sequelize');
 
-var dialect = 'mysql';
+let dialect = 'mysql';
 /**
  * Set up db connections
  */

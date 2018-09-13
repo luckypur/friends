@@ -11,9 +11,8 @@ function reqDir(dir) {
     for (let i = 0; i < files.length; i++) {
         let file = files[i];
         // Don't include the index or directory's main file
-        if (file !== dirName && file !== 'index.js') {
-            reqObj[file] = require(dir + '/' + file);
-        }
+        if (file !== dirName && file !== 'index.js')
+            reqObj[file] = require(dir + '/' + file)
     }
     return reqObj;
 }
@@ -23,28 +22,25 @@ function success(res, message) {
     return function (data) {
         console.log('SUCCESS!');
         let response = {};
-        if (message) {
+        if (message)
             response = {
                 message: message,
                 data: data
             };
-        } else {
+        else
             response = data;
-        }
         return res.json(response);
     }
 }
 
 function failure(req, next, status) {
     return function (err) {
-        console.log('FAILURE!', err)
-        if (err.statusCode) {
+        console.log('FAILURE!', err);
+        if (err.statusCode)
             req.appStatus = err.statusCode;
-        } else {
+        else
             req.appStatus = status;
-        }
         next(err);
-        return;
     }
 }
 

@@ -7,16 +7,14 @@ var notFoundError = require('../../helpers').notFoundError;
 
 /**
  * create two relationship here
- * i am ur friend and u r mine(good for rdbms ;))
- * @param user_id
- * @param friend_id
- */
-function makeFriend(user_id, friend_id) {
-    return this.findById(user_id)
+ * will better while retrieving records
+ * */
+function makeFriend(userId, friendId) {
+    return this.findById(userId)
         .then(user => {
             if (!user)
                 notFoundError('User');
-            this.findById(friend_id)
+            this.findById(friendId)
                 .then(friend => {
                     if (!friend)
                         notFoundError('User');
